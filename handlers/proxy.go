@@ -61,7 +61,7 @@ func (a *AdminUserGetter) GetAdminInfo() (*security.User, error) {
 		return a.user, nil
 	}
 
-	resp, err := http.Get(fmt.Sprintf("http://%s/maintain/v1/mainuser/exist", a.conf.PolarisServer.Address))
+	resp, err := http.Get(fmt.Sprintf("%s://%s/maintain/v1/mainuser/exist", a.conf.PolarisServer.Scheme, a.conf.PolarisServer.Address))
 	if err != nil || resp.StatusCode != http.StatusOK {
 		user := &security.User{
 			Name: wrapperspb.String(a.conf.WebServer.MainUser),
