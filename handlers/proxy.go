@@ -89,6 +89,7 @@ func ReverseProxyForLogin(polarisServer *bootstrap.PolarisServer, conf *bootstra
 			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.Host = polarisServer.Address
+			req.Header.Set("Accept-Encoding", "identity")
 			body, err := ioutil.ReadAll(req.Body)
 			if err != nil {
 				log.Error("[Proxy][Login] modify login request fail", zap.Error(err))
