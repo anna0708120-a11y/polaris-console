@@ -1,4 +1,5 @@
 FROM node:20-alpine AS web
+RUN apk add --no-cache bash
 WORKDIR /src/web
 COPY web/package*.json ./
 RUN npm ci --legacy-peer-deps
