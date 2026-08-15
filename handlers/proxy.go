@@ -145,7 +145,14 @@ func ReverseProxyForLogin(polarisServer *bootstrap.PolarisServer, conf *bootstra
 			resp.Body = io.NopCloser(bytes.NewBuffer(body))
 			return nil
 		}
-		proxy := &httputil.ReverseProxy{Director: director, ModifyResponse: modifyResp}
+		proxy := &httputil.ReverseProxy{
+			Director:       director,
+			ModifyResponse: modifyResp,
+			ErrorHandler: func(w http.ResponseWriter, req *http.Request, err error) {
+				log.Error("[Proxy][Login] upstream request failed", zap.Error(err))
+				c.JSON(http.StatusBadGateway, gin.H{"code": http.StatusBadGateway, "info": err.Error()})
+			},
+	}
 		proxy.ServeHTTP(c.Writer, c.Request)
 	}
 }
