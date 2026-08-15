@@ -41,6 +41,7 @@ type StaffDepartment struct {
 // PolarisServer polaris server配置
 type PolarisServer struct {
 	Address      string `yaml:"address"`
+	Scheme       string `yaml:"scheme"`
 	PolarisToken string `yaml:"polarisToken"`
 }
 

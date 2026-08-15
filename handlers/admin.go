@@ -41,7 +41,7 @@ func ReverseHandleBootstrap(polarisServer *bootstrap.PolarisServer, conf *bootst
 		c.Request.Header.Del("Cookie")
 
 		director := func(req *http.Request) {
-			req.URL.Scheme = "http"
+			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.Host = polarisServer.Address
 		}
@@ -74,7 +74,7 @@ func ReverseHandleAdminUserExist(polarisServer *bootstrap.PolarisServer, conf *b
 		c.Request.Header.Del("Cookie")
 
 		director := func(req *http.Request) {
-			req.URL.Scheme = "http"
+			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.Host = polarisServer.Address
 		}

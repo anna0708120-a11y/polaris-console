@@ -41,7 +41,7 @@ func DescribeServerNodes(polarisServer *bootstrap.PolarisServer, conf *bootstrap
 		c.Request.Header.Del("Cookie")
 
 		director := func(req *http.Request) {
-			req.URL.Scheme = "http"
+			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.URL.Path = "/naming/v1/instances"
 			req.URL.RawQuery = "limit=10&offset=0&namespace=Polaris&service=polaris.checker"

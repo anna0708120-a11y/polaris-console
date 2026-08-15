@@ -105,7 +105,7 @@ func ReverseProxyForLogin(polarisServer *bootstrap.PolarisServer, conf *bootstra
 		c.Request.Header.Del("Cookie")
 
 		director := func(req *http.Request) {
-			req.URL.Scheme = "http"
+			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.Host = polarisServer.Address
 			body, err := ioutil.ReadAll(req.Body)
@@ -180,7 +180,7 @@ func ReverseProxyForServer(polarisServer *bootstrap.PolarisServer, conf *bootstr
 		c.Request.Header.Del("Cookie")
 
 		director := func(req *http.Request) {
-			req.URL.Scheme = "http"
+			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.Host = polarisServer.Address
 		}
@@ -225,7 +225,7 @@ func ReverseProxyNoAuthForServer(polarisServer *bootstrap.PolarisServer, conf *b
 		c.Request.Header.Del("Cookie")
 
 		director := func(req *http.Request) {
-			req.URL.Scheme = "http"
+			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.Host = polarisServer.Address
 		}

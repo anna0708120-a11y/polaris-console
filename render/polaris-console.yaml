@@ -19,6 +19,7 @@ webServer:
   webPath: "web/dist/"
   mainUser: "polaris"
 polarisServer:
+  scheme: "${POLARIS_SERVER_SCHEME}"
   address: "${POLARIS_SERVER_HTTP_ADDR}"
 monitorServer:
   address: "127.0.0.1:9090"

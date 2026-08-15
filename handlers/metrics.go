@@ -76,7 +76,7 @@ func DescribeRequestInterface(polarisServer *bootstrap.PolarisServer, conf *boot
 		c.Request.Header.Del("Cookie")
 
 		director := func(req *http.Request) {
-			req.URL.Scheme = "http"
+			req.URL.Scheme = polarisServer.Scheme
 			req.URL.Host = polarisServer.Address
 			req.URL.Path = "/apidocs.json"
 			req.Host = polarisServer.Address
