@@ -130,7 +130,6 @@ func ReverseProxyForLogin(polarisServer *bootstrap.PolarisServer, conf *bootstra
 			}
 			if val, ok := loginResp["loginResponse"].(map[string]interface{}); ok {
 				if token := val["token"]; token != "" {
-					val["token"] = "******" // 避免前端出错,保证返回, 但隐藏现有的token
 					body, err = json.Marshal(loginResp)
 					if err != nil {
 						return err
